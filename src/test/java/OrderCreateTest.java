@@ -21,16 +21,12 @@ public class OrderCreateTest extends BaseMethods {
                 .assertThat()
                 .body("name", notNullValue())
                 .and()
-                .statusCode(200)
+                .statusCode(201)
                 .and()
                 .body("success", equalTo(true));
     }
 
-    /**
-     * Для  теста orderCreateWithoutAuthorization должен приходить ответ 401,
-     * но приходит 200 => в тесте указала 200, чтобы тест не падал.
-     * Это баг системы.
-     */
+
 
     @Test
     @DisplayName("Создание заказа без авторизации")
@@ -39,7 +35,7 @@ public class OrderCreateTest extends BaseMethods {
         Response response = getOrder().createOrder(getOrderCreate(), "");
         response.then()
                  .assertThat()
-                .statusCode(200) // должен приходить ответ 401
+                .statusCode(401)
                 .and()
                 .body("name", notNullValue())
                 .and()

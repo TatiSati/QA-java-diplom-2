@@ -1,5 +1,6 @@
 package step;
 
+import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -13,9 +14,12 @@ import java.util.Collections;
 public class BaseMethods {
 
     public final static String BASE_URI = "https://stellarburgers.nomoreparties.site/";
-    private final String email = "tanuysik_94@mail.ru";
-    private final String password = "12345Qwerty";
-    private final String name = "Татьяна";
+
+    Faker faker = new Faker();
+    private final String email = faker.internet().emailAddress();
+    private final String password = faker.internet().password();
+    private final String name = faker.name().fullName();
+
     private final String changeEmail = "change_" + email;
     private final String changeName = "change_" + name;
     private final ArrayList<String> ingredients = new ArrayList<>(Collections.singleton("61c0c5a71d1f82001bdaaa6f"));
